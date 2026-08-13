@@ -1,0 +1,336 @@
+/* AGPLv3 license
+Custom Background
+Author: AnubisNekhet
+support me: https://buymeacoffee.com/anubisnekhet
+*/
+
+/* @settings
+name: AnuPpuccin Custom Background
+id: anuppuccin-custom-background
+settings:
+
+-
+  id: anp-custom-background-header
+  title: Background
+  description: Custom workspace backgrounds
+  type: heading
+  level: 1
+  collapsed: true
+-
+  id: anp-background-image-toggle
+  title: Enable Custom Background (WIP)
+  description: Not compatible with colorful frame
+  type: class-toggle
+
+-
+  id: anp-custom-background-light-header
+  title: Light Mode
+  description: 
+  type: heading
+  level: 2
+  collapsed: true
+-
+  id: anp-background-image-light
+  title: Custom Background Image URL
+  description: 'Formatted as url("https://link-to-image.png")'
+  type: variable-text
+  default: url("https://link-to-image.png")
+-
+  id: anp-custom-bg-brightness-light
+  title: Background brightness
+  type: variable-number-slider
+  min: 0
+  max: 2
+  step: 0.05
+  default: 0.7
+-
+  id: anp-custom-bg-blur-light
+  title: Background blur
+  type: variable-number-slider
+  min: 0
+  max: 20
+  step: 1
+  default: 5
+  format: px
+-
+  id: anp-custom-bg-card-fg-opacity-light
+  title: Container opacity
+  type: variable-number-slider
+  min: 0
+  max: 1
+  step: 0.05
+  default: 0.4
+
+-
+  id: anp-custom-background-dark-header
+  title: Dark Mode
+  description: 
+  type: heading
+  level: 2
+  collapsed: true
+-
+  id: anp-background-image-dark
+  title: Custom Background Image URL
+  description: 'Formatted as url("https://link-to-image.png")'
+  type: variable-text
+  default: url("https://link-to-image.png")
+-
+  id: anp-custom-bg-brightness-dark
+  title: Background brightness
+  type: variable-number-slider
+  min: 0
+  max: 1
+  step: 0.05
+  default: 0.7
+-
+  id: anp-custom-bg-blur-dark
+  title: Background blur
+  type: variable-number-slider
+  min: 0
+  max: 20
+  step: 1
+  default: 5
+  format: px
+-
+  id: anp-custom-bg-card-fg-opacity-dark
+  title: Container opacity
+  type: variable-number-slider
+  min: 0
+  max: 1
+  step: 0.05
+  default: 0.4
+*/
+
+.anp-background-image-toggle:not(.anp-colorful-frame) {
+	.app-container,
+	&.anp-bg-fix .app-container {
+		background: var(
+			--anp-background-image,
+			url("https://i.redd.it/m23bwh4n0x151.png")
+		);
+		background-size: cover;
+		background-color: transparent;
+	}
+	.horizontal-main-container,
+	&.anp-bg-fix .horizontal-main-container {
+		backdrop-filter: brightness(var(--anp-custom-bg-brightness, 0.5))
+			blur(var(--anp-custom-bg-blur, 5px));
+		background-color: transparent;
+	}
+	.workspace {
+		background: transparent;
+	}
+	--card-background-color: transparent;
+	--card-foreground-color: rgba(
+		var(--ctp-base),
+		var(--anp-custom-bg-card-fg-opacity, 0.4)
+	);
+	--tab-inactive-color: rgba(
+		var(--ctp-mantle),
+		var(--anp-custom-bg-card-fg-opacity, 0.4)
+	);
+	--code-background: var(--card-foreground-color);
+	&.anp-card-layout .workspace-split.mod-root .view-content {
+		background: transparent;
+	}
+	&.anp-alternate-tab-toggle .workspace-tabs:not(.mod-stacked),
+	&.anp-safari-tab-toggle .workspace-tabs:not(.mod-stacked) {
+		--tab-background: var(--tab-inactive-color);
+		--tab-background-active: var(--card-foreground-color);
+		--tab-background-inactive: var(--tab-inactive-color);
+	}
+	&.anp-floating-header .nav-folder.mod-root > .nav-folder-title {
+		background-color: var(--tab-inactive-color);
+	}
+	&.anp-canvas-dark-bg .canvas-wrapper,
+	.canvas-wrapper,
+	.mod-macos.is-hidden-frameless:not(.is-popout-window)
+		.sidebar-toggle-button.mod-right,
+	&:not(.anp-card-layout).mod-macos.is-hidden-frameless:not(.is-popout-window)
+		.sidebar-toggle-button.mod-right,
+	&.anp-card-layout .workspace-ribbon.mod-left:before,
+	.anp-card-layout .workspace-tab-header-container,
+	.workspace-split.mod-root {
+		background-color: transparent;
+	}
+	&:not(.anp-card-layout, .anp-border-layout) .workspace-tab-header-container,
+	&:not(.anp-card-layout) .workspace-tabs .workspace-leaf,
+	&:not(.anp-card-layout) .workspace-split.mod-root .view-content,
+	&:not(.anp-card-layout, .anp-border-layout) .workspace-ribbon,
+	&:not(.anp-card-layout, .anp-border-layout) .workspace-ribbon.mod-left:before,
+	&:not(.anp-card-layout) .view-header,
+	&.is-focused:not(.anp-card-layout) .workspace-leaf.mod-active .view-header,
+	.kanban-plugin__lane,
+	.kanban-plugin__item-content-wrapper {
+		background-color: var(--card-foreground-color);
+	}
+	.kanban-plugin__item-title-wrapper,
+	&.is-focused.anp-card-layout .workspace-leaf.mod-active .view-header,
+	&.anp-card-layout .workspace-ribbon {
+		background: transparent;
+	}
+	.workspace-fake-target-overlay:not(.is-in-sidebar)
+		.workspace-tabs
+		.workspace-leaf,
+	.mod-root .workspace-tabs .workspace-leaf,
+	&.anp-card-layout .view-header,
+	.is-focused .workspace-leaf.mod-active .view-header {
+		background-color: transparent;
+	}
+	.view-header-title-container:not(.mod-at-end):after {
+		display: none;
+	}
+	.kanban-plugin .kanban-plugin__lane button:hover {
+		background-color: var(--card-foreground-color);
+	}
+	&.anp-border-layout {
+		.workspace-tab-header-container,
+		.workspace-ribbon.mod-left:before {
+			background: transparent;
+		}
+	}
+	&:not(.anp-border-layout, .anp-card-layout) {
+		&.anp-fixed-status-bar {
+			.status-bar {
+				background: var(--card-foreground-color);
+				backdrop-filter: brightness(var(--anp-custom-bg-brightness, 0.5))
+					blur(var(--anp-custom-bg-blur, 5px));
+			}
+		}
+	}
+	&.anp-border-layout,
+	&.anp-card-layout {
+		&.anp-fixed-status-bar {
+			.status-bar {
+				background: transparent;
+				backdrop-filter: brightness(var(--anp-custom-bg-brightness, 0.5))
+					blur(var(--anp-custom-bg-blur, 5px));
+			}
+		}
+	}
+}
+
+
+/* Icon contrast override */
+.theme-light {
+  --icon-color: #111111 !important;
+  --icon-color-hover: #7c2d12 !important;
+  --icon-color-focused: #7c2d12 !important;
+  --icon-color-active: #450a0a !important;
+}
+.theme-dark {
+  --icon-color: #f8f5e8 !important;
+  --icon-color-hover: #ffd166 !important;
+  --icon-color-focused: #ffd166 !important;
+  --icon-color-active: #ff9f1c !important;
+}
+.theme-light .clickable-icon,
+.theme-light .workspace-tab-header-inner-icon,
+.theme-light .nav-file-title .nav-file-tag,
+.theme-light .nav-folder-title .nav-folder-collapse-indicator,
+.theme-light .svg-icon {
+  color: #111111 !important;
+  stroke: currentColor !important;
+}
+.theme-dark .clickable-icon,
+.theme-dark .workspace-tab-header-inner-icon,
+.theme-dark .nav-file-title .nav-file-tag,
+.theme-dark .nav-folder-title .nav-folder-collapse-indicator,
+.theme-dark .svg-icon {
+  color: #f8f5e8 !important;
+  stroke: currentColor !important;
+}
+.theme-light .clickable-icon:hover,
+.theme-light .workspace-tab-header-inner-icon:hover { color: #7c2d12 !important; }
+.theme-dark .clickable-icon:hover,
+.theme-dark .workspace-tab-header-inner-icon:hover { color: #ffd166 !important; }
+/* File explorer text contrast override */
+.theme-light .nav-file-title,
+.theme-light .nav-file-title-content,
+.theme-light .nav-folder-title,
+.theme-light .nav-folder-title-content,
+.theme-light .tree-item-self,
+.theme-light .workspace-tab-header-inner-title {
+  color: #111111 !important;
+}
+.theme-dark .nav-file-title,
+.theme-dark .nav-file-title-content,
+.theme-dark .nav-folder-title,
+.theme-dark .nav-folder-title-content,
+.theme-dark .tree-item-self,
+.theme-dark .workspace-tab-header-inner-title {
+  color: #f8f5e8 !important;
+}
+.theme-light .nav-file-title.is-active,
+.theme-light .nav-folder-title:hover { color: #7c2d12 !important; }
+.theme-dark .nav-file-title.is-active,
+.theme-dark .nav-folder-title:hover { color: #ffd166 !important; }
+/* Reading text contrast override */
+.theme-light {
+  --text-normal: #151515 !important;
+  --text-muted: #333333 !important;
+  --text-faint: #555555 !important;
+  --h1-color: #090909 !important;
+  --h2-color: #111111 !important;
+  --h3-color: #181818 !important;
+  --h4-color: #202020 !important;
+  --h5-color: #272727 !important;
+  --h6-color: #303030 !important;
+}
+.theme-light .markdown-source-view.mod-cm6 .cm-content,
+.theme-light .markdown-reading-view,
+.theme-light .markdown-preview-view {
+  color: #151515 !important;
+}
+.theme-light .markdown-source-view.mod-cm6 .cm-header,
+.theme-light .markdown-reading-view h1,
+.theme-light .markdown-reading-view h2,
+.theme-light .markdown-reading-view h3,
+.theme-light .markdown-reading-view h4,
+.theme-light .markdown-reading-view h5,
+.theme-light .markdown-reading-view h6,
+.theme-light .markdown-preview-view h1,
+.theme-light .markdown-preview-view h2,
+.theme-light .markdown-preview-view h3,
+.theme-light .markdown-preview-view h4,
+.theme-light .markdown-preview-view h5,
+.theme-light .markdown-preview-view h6 {
+  color: #090909 !important;
+}
+.theme-dark {
+  --text-normal: #f8f5e8;
+  --text-muted: #ded7c5;
+}
+
+/* File explorer card restoration */
+/* Uses AnuPpuccin's existing card color in both light and dark mode. */
+.anp-background-image-toggle .workspace-leaf-content[data-type="file-explorer"],
+.anp-background-image-toggle .workspace-leaf-content[data-type="file-explorer"] > .view-content,
+.anp-background-image-toggle .workspace-leaf-content[data-type="file-explorer"] .nav-files-container {
+  background: var(--card-foreground-color) !important;
+}
+.anp-background-image-toggle .workspace-leaf-content[data-type="file-explorer"] {
+  border: 1px solid var(--background-modifier-border) !important;
+  border-radius: 22px !important;
+  margin: 8px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22) !important;
+}
+.anp-background-image-toggle .workspace-leaf:has(> .workspace-leaf-content[data-type="file-explorer"]) > .view-header,
+.anp-background-image-toggle .workspace-leaf:has(.workspace-leaf-content[data-type="file-explorer"]) .view-header {
+  background: var(--card-foreground-color) !important;
+  border: 1px solid var(--background-modifier-border) !important;
+  border-bottom: 0 !important;
+  border-radius: 22px 22px 0 0 !important;
+  margin: 8px 8px 0 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22) !important;
+}
+/* End file explorer card restoration */
+
+/* Hide PNG attachment entries */
+/* Images remain in the vault and inside notes; only their file-list rows are hidden. */
+.nav-file[data-path$=".png"],
+.nav-file-title[data-path$=".png"] {
+  display: none !important;
+}
+/* End hide PNG attachment entries */
